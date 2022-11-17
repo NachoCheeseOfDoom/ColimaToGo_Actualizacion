@@ -1,0 +1,69 @@
+<section class="food__team__area team--2 bg--dark">
+    <div class="container">
+        <div class="row" *ngIf="detalleRestaurante">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="bradcaump__inner text-center">
+                    <img [src]="detalleRestaurante.logoCarniceria" alt="{{detalleRestaurante.nombre}}" width="27%"
+                        height="125" *ngIf="!tipoDispositivo">
+                    <img [src]="detalleRestaurante.logoCarniceria" alt="{{detalleRestaurante.nombre}}" width="100%"
+                        height="auto" *ngIf="tipoDispositivo">
+                    <!-- <h2 class="bradcaump-title">{{detalleRestaurante.nombre}}</h2> -->
+                </div>
+            </div>
+        </div>
+        <div  *ngIf="verCategoriasMenu.length>1">
+            <div class="row mt--40" *ngFor="let item of verCategoriasMenu; let i=index">
+
+
+                <div class="col-lg-4 col-md-4" *ngFor="let item of verCategoriasMenu[i].productoCategoria">
+                    <div class="team text-center foo">
+                        <div class="team__thumb">
+                            <a [routerLink]="['/carniceria', nombreRestaurante, item.idProducto]">
+                                <img [src]="item.imagenProducto" [alt]="item.nombreProducto" height="209">
+                            </a>
+                        </div>
+                        <div class="team__content">
+                            <div class="team__info">
+                                <h4><a
+                                        [routerLink]="['/carniceria', nombreRestaurante, item.idProducto]">{{item.nombreProducto}}</a>
+                                </h4>
+                                <h6>${{item.productoPrecio}}</h6>
+                            </div>
+                            {{item.productoDescripcion}}<br>
+                            <a class="food__btn btn--transparent btn__hover--theme btn__hover--theme"
+                                [routerLink]="['/carniceria', nombreRestaurante, item.idProducto]">
+                                <span *ngIf="item.productoDisponible==='1'">Ordenar</span>
+                                <span *ngIf="item.productoDisponible!='1'">Agotado</span>
+                            </a>
+                            <!--  <ul class="team__social__net">
+                            <li>
+                                <div class="pp__btn">
+                                    <a class="food__btn btn--transparent btn__hover--theme btn__hover--theme"
+                                        [routerLink]="['/carniceria', nombreRestaurante, item.idProducto]">
+                                        <span *ngIf="item.productoDisponible==='1'">Ordenar</span>
+                                        <span *ngIf="item.productoDisponible!='1'">Agotado</span>
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+                        -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+
+<section class="fd__special__menu__area" *ngIf="detalleRestaurante">
+    <div class="special__food__menu">
+        <div class="food__menu__prl bg-image--Resta">
+            <div class="container">
+
+            </div>
+        </div>
+    </div>
+</section>

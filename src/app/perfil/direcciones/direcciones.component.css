@@ -1,0 +1,321 @@
+agm-map {
+    height: 350px;
+}
+
+#indicators {
+    padding: 16px;
+    height: 40%;
+    width: 100%;
+    overflow-y: auto;
+    display: block;
+  }
+
+
+#botones-generales{
+  margin-top: 10px;
+  color: white;
+  border: none;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 1px;
+  padding: 10px 15px;
+  border-radius: 50px;
+  transition: 0.5s;
+  background: var(--color-primary);
+  box-shadow: 0px 8px 28px rgba(206, 18, 18, 0.2);
+}
+
+#botones-generales:hover{
+  background: rgba(206, 18, 18, 0.8);
+  box-shadow: 0px 4px 28px rgba(206, 18, 18, 0.45);
+}
+
+
+/* ==================================================== */
+/* Estilos de los inputs */
+/* ==================================================== */
+
+.group {
+  position: relative;
+  margin: 25px 0;
+  display: inline-block;
+}
+
+input,
+textarea {
+  background: none;
+  color: black;
+  font-size: 18px;
+  padding: 10px 10px 10px 5px;
+  display: block;
+  width: 300px;
+  border: none;
+  border-radius: 0;
+  border-bottom: 1px solid #c6c6c6;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+}
+input:focus ~ label, input:valid ~ label,
+textarea:focus ~ label,
+textarea:valid ~ label {
+  top: -14px;
+  font-size: 12px;
+  color: red;
+}
+input:focus ~ .bar:before,
+textarea:focus ~ .bar:before {
+  width: 300px;
+}
+
+input[type=password] {
+  letter-spacing: 0.3em;
+}
+
+label {
+  color: #c6c6c6;
+  font-size: 16px;
+  font-weight: normal;
+  position: absolute;
+  pointer-events: none;
+  left: 5px;
+  top: 10px;
+  transition: 300ms ease all;
+}
+
+.bar {
+  position: relative;
+  display: block;
+  width: 320px;
+}
+.bar:before {
+  content: "";
+  height: 2px;
+  width: 0;
+  bottom: 0px;
+  position: absolute;
+  background: red;
+  transition: 300ms ease all;
+  left: 0%;
+}
+
+/* ====================================== */
+/* inputs de direccion */
+/* =========================================== */
+
+input:focus ~ .bar-direccion:before,
+textarea:focus ~ .bar-direccion:before {
+  width: 300px;
+}
+
+#ingresar-direccion-input{
+  font-size: 14px;
+    width: 300px;
+}
+
+#ingresar-direccion-input:focus ~ #ingresar-direccion-lable, #ingresar-direccion-input:valid ~ #ingresar-direccion-lable,
+textarea:focus ~ #ingresar-direccion-lable,
+textarea:valid ~ #ingresar-direccion-lable {
+  top: -14px;
+  font-size: 15px;
+  color: red;
+}
+
+#ingresar-direccion-lable{
+  color: #222;
+  font-size: 12px;
+}
+
+.bar-direccion{
+  position: relative;
+  display: block;
+  width: 320px;
+}
+
+.bar-direccion:before {
+  content: "";
+  height: 2px;
+  width: 0;
+  bottom: 0px;
+  position: absolute;
+  background: red;
+  transition: 300ms ease all;
+  left: 0%;
+}
+
+/* ====================================== */
+/* inputs de Calle */
+/* =========================================== */
+
+input:focus ~ .bar-calle:before,
+textarea:focus ~ .bar-calle:before {
+  width: 187px;
+}
+
+#ingresar-calle-input{
+  font-size: 14px;
+    width: 187px;
+}
+
+#ingresar-calle-input:focus ~ #ingresar-calle-lable, #ingresar-calle-input:valid ~ #ingresar-calle-lable,
+textarea:focus ~ #ingresar-calle-lable,
+textarea:valid ~ #ingresar-calle-lable {
+  top: -14px;
+  font-size: 15px;
+  color: red;
+}
+
+#ingresar-calle-lable{
+  color: #222;
+  font-size: 12px;
+}
+
+.bar-calle{
+  position: relative;
+  display: block;
+  width: 320px;
+}
+
+.bar-calle:before {
+  content: "";
+  height: 2px;
+  width: 0;
+  bottom: 0px;
+  position: absolute;
+  background: red;
+  transition: 300ms ease all;
+  left: 0%;
+}
+
+/* ====================================== */
+/* inputs de Colonia */
+/* =========================================== */
+
+input:focus ~ .bar-colonia:before,
+textarea:focus ~ .bar-colonia:before {
+  width: 113px;
+}
+
+#ingresar-colonia-input{
+  font-size: 14px;
+    width: 113px;
+}
+
+#ingresar-colonia-input:focus ~ #ingresar-colonia-lable, #ingresar-colonia-input:valid ~ #ingresar-colonia-lable,
+textarea:focus ~ #ingresar-colonia-lable,
+textarea:valid ~ #ingresar-colonia-lable {
+  top: -14px;
+  font-size: 15px;
+  color: red;
+}
+
+#ingresar-colonia-lable{
+  color: #222;
+  font-size: 12px;
+}
+
+.bar-colonia{
+  position: relative;
+  display: block;
+  width: 320px;
+}
+
+.bar-colonia:before {
+  content: "";
+  height: 2px;
+  width: 0;
+  bottom: 0px;
+  position: absolute;
+  background: red;
+  transition: 300ms ease all;
+  left: 0%;
+}
+
+/* =============================== */
+/* Tamaño para celuar */
+/* =============================== */
+
+@media only screen and (max-width: 760px) { 
+
+
+    /* 👇=====================Direccion input================================ */
+input:focus ~ .bar-direccion:before,
+textarea:focus ~ .bar-direccion:before {
+  width: 290px;
+}
+
+#ingresar-direccion-input{
+  font-size: 14px;
+    width: 290px;
+}
+/* 👆===================================================================== */
+
+/* 👇=====================Calle input================================ */
+input:focus ~ .bar-calle:before,
+textarea:focus ~ .bar-calle:before {
+  width: 290px;
+}
+
+#ingresar-calle-input{
+  font-size: 14px;
+    width: 290px;
+}
+/* 👆===================================================================== */
+
+/* 👇=====================Colonia input================================ */
+input:focus ~ .bar-colonia:before,
+textarea:focus ~ .bar-colonia:before {
+  width: 290px;
+}
+
+#ingresar-colonia-input{
+  font-size: 14px;
+    width: 290px;
+}
+/* 👆===================================================================== */
+}
+
+/* =============================== */
+/* Tamaño mas pequeño para celuar */
+/* =============================== */
+
+@media only screen and (max-width: 490px) { 
+
+  /* 👇=====================Direccion input================================ */
+input:focus ~ .bar-direccion:before,
+textarea:focus ~ .bar-direccion:before {
+  width: 250px;
+}
+
+#ingresar-direccion-input{
+  font-size: 14px;
+    width: 250px;
+}
+/* 👆===================================================================== */
+
+/* 👇=====================Calle input================================ */
+input:focus ~ .bar-calle:before,
+textarea:focus ~ .bar-calle:before {
+  width: 250px;
+}
+
+#ingresar-calle-input{
+  font-size: 14px;
+    width: 250px;
+}
+/* 👆===================================================================== */
+
+/* 👇=====================Colonia input================================ */
+input:focus ~ .bar-colonia:before,
+textarea:focus ~ .bar-colonia:before {
+  width: 250px;
+}
+
+#ingresar-colonia-input{
+  font-size: 14px;
+    width: 250px;
+}
+/* 👆===================================================================== */
+}

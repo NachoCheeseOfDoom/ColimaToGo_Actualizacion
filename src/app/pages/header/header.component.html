@@ -1,0 +1,422 @@
+<!-- Inicio del header -->
+<header  class="header align-items-center htc__header bg--white ">
+  <!-- ! Si quiere hacer el header "Sticky" agregar "fixed-top" solo que viene con problemas -->
+    <!-- Botones Principales -->
+    <div id="sticky-header-with-topbar" class="mainmenu__wrap sticky__header">
+        <div class="container d-flex align-items-center justify-content-between">
+            <!-- <div class="row"> -->
+                <!-- <div class="col-lg-2 col-sm-4 col-md-6 order-1 order-lg-1">
+                    <div class="logo">
+                        <a href="#top" [routerLink]="['/']" *ngIf="datosHeader">
+                            <img [src]="datosHeader.logoHeader" alt="logo images" [width]="datosHeader.widthPX"
+                                [height]="datosHeader.heightPX">
+                        </a>
+                    </div>
+                </div> -->
+                <a href="#" class="logo d-flex align-items-center me-auto me-lg-0">
+                  <img src="assets/img2/colimatoGo2.jpeg" alt="">
+                </a>
+                <nav class="col-lg-10 col-sm-4 col-md-4 order-2 order-lg-3"  >
+                    <ul class="header__right d-flex justify-content-end">
+                        <li class="shopping__cart" *ngIf="estaAutenticado">
+                            <div class="pp__btn">
+                                <a class="accountbox-trigger" routerLink="perfil" #clicPerfil>
+                                    <span>Perfil</span> &nbsp;<i class="zmdi zmdi-account-circle"></i></a>
+                            </div>
+                        </li>
+                        <li class="shopping__cart" *ngIf="!estaAutenticado">
+                            <div class="pp__btn">
+                                <a class="accountbox-trigger" href="javascript:void(0)" (click)="verLogin()">
+                                    <span>Entrar</span> &nbsp;<i class="zmdi zmdi-account-o"></i></a>
+                            </div>
+                        </li>
+                        <li class="shopping__cart">
+                            <div class="pp__btn">
+                                <a class="minicart-trigger" href="javascript:void(0)" (click)="verCarrito()">
+                                    <span *ngIf="cantidadCarrito>0">Orden </span>&nbsp;
+                                    <i class="zmdi zmdi-shopping-basket zmdi-hc-lg"></i> </a>
+                                <div class="shop__qun">
+                                    <span>{{cantidadCarrito}}</span>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+            <!-- </div> -->
+
+            <!-- Mobile Menu -->
+            <div class="mobile-menu d-block d-lg-none"></div>
+            <!-- Mobile Menu -->
+        </div>
+    </div>
+    <!-- End  Botones Principales-->
+</header>
+<!-- Fin del header -->
+
+<!-- Botones Modal Registro-->
+<div class="accountbox-wrapper is-visible" *ngIf="banVerLogin">
+    <div class="accountbox text-left">
+        <ul class="nav accountbox__filters" id="myTab" role="tablist">
+            <li>
+                <a [ngClass]="{'active': banderaLoginRegistro}" id="log-tab" style="cursor: pointer;"
+                    (click)="banderaLoginRegistro=true">
+                    Entrar</a>
+            </li>
+            <li>
+                <a [ngClass]="{'active': !banderaLoginRegistro}" id="profile-tab" style="cursor: pointer;"
+                    (click)="banderaLoginRegistro=false">
+                    Registrarse</a>
+            </li>
+        </ul>
+        <div class="accountbox__inner tab-content" id="myTabContent">
+            <div class="accountbox__login tab-pane fade show active" id="log" *ngIf="banderaLoginRegistro">
+                <form action="#">
+
+                    <div class="accountbox-login__others">
+                        <h6>Entrar con</h6>
+                        <div class="social-icons text-center">
+                            <ul>
+                                <li class="facebook">
+                                    <a (click)="entrarFB()">
+                                        <i class="fa fa-2x fa-facebook"></i>
+                                    </a>
+                                </li>
+                                <li class="pinterest">
+                                    <a (click)="entrarconGoogle()">
+                                        <i class="fa fa-2x fa-google-plus"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="single-input">
+                        <input class="cr-round--lg" type="email" placeholder="Correo" name="correo"
+                            [(ngModel)]="usuarioN.correo">
+                    </div>
+                    <div class="single-input">
+                        <input class="cr-round--lg" type="password" placeholder="Contraseña" name="contrasena"
+                            [(ngModel)]="usuarioN.contrasena">
+                    </div>
+                    <div class="single-input">
+                        <div class="social-icons text-center">
+                            <!-- ! 👇==========================Bontenes editados id agregada:👉 id="boton-de-accountbox" ======================================== -->
+                            <ul>
+                                <li class="facebook">
+                                    <button id="boton-de-accountbox" type="button"
+                                        (click)="entrarCorreo()"><span>Entrar</span></button>
+                                </li>
+                                <li>
+                                    <button id="boton-de-accountbox" type="button"
+                                        (click)="banderaLoginRegistro=false"><span>Registrarse</span></button>
+                                </li>
+                            </ul>
+                            <!-- ! 👆============================================================================================== -->
+                        </div>
+                    </div>
+                    <!-- ! 👇==========================Recuperar la contrasena: 👉 id="recupera-contrasena" ======================================== -->
+                    <div class="single-input">
+                        <h5>
+                            <a id="recupera-contrasena" href="javascript:void()" (click)="recuperarcuenta()">
+                                Recupera tu contraseña
+                            </a>
+                        </h5>
+                    </div>
+                    <!-- ! 👆============================================================================================== -->
+                </form>
+            </div>
+            <div class="accountbox__register tab-pane fade show active" id="profile" *ngIf="!banderaLoginRegistro">
+                <form action="#">
+                    <div class="single-input">
+                        <input class="cr-round--lg" type="text" placeholder="Nombre" name="a1"
+                            [(ngModel)]="usuarioN.nombre">
+                    </div>
+                    <div class="single-input">
+                        <input class="cr-round--lg" type="email" placeholder="Correo" name="a51"
+                            [(ngModel)]="usuarioN.correo">
+                    </div>
+                    <div class="single-input">
+                        <input class="cr-round--lg" type="tel" placeholder="Telefono" name="a2"
+                            [(ngModel)]="usuarioN.telefono">
+                    </div>
+                    <div class="single-input">
+                        <input class="cr-round--lg" type="password" placeholder="Contraseña"
+                            [(ngModel)]="usuarioN.contrasena" name="a3">
+                    </div>
+                    <div class="single-input">
+                        <input class="cr-round--lg" type="password" placeholder="Confirmar Contraseña" name="a4"
+                            [(ngModel)]="usuarioN.contrasenaConfimarcion">
+                    </div>
+                <!-- ! 👇==========================Bontenes editados id agregada: id="boton-de-accountbox" ======================================== -->
+                    <div class="single-input">
+                        <button id="boton-de-accountbox" type="submit"
+                            (click)="registrarCorreo()"><span>Registrase</span></button>
+                    </div>
+                <!-- ! ==================================================================================================== -->
+                </form>
+            </div>
+            <span class="accountbox-close-button" (click)="verLogin()"><i class="zmdi zmdi-close"></i></span>
+        </div>
+    </div>
+</div>
+<!-- END Botones Modal Registro-->
+
+<div class="cartbox-wrap is-visible" *ngIf="banVerCarrito">
+    <div class="cartbox text-right">
+        <button class="cartbox-close" (click)="ocultarCarro()" #btnOcoltarCarro><i class="zmdi zmdi-close"></i></button>
+        <div *ngIf="!carritoCliente">
+            <div class="cartbox__inner text-left">
+                Selecciona un restaurante y agrega sus productos para realizar tu pedido
+            </div>
+        </div>
+        <div *ngIf="idRestaurante!=undefined && idRestaurante=='NqufQezu7E0qD1MXkPYB'">
+            <div class="cartbox__buttons">
+                <a class="food__btn" href="javascript:void(0)" [routerLink]="['/carniceria','Chepe']"
+                    routerLinkActive="router-link-active" (click)="ocultarCarro()">
+                    <span>Carniceria "Chepe"</span>
+                </a>
+            </div>
+        </div>
+        <div *ngIf="carritoCliente">
+            <div class="cartbox__inner text-left">
+                <div class="cartbox__items">
+                    <!-- Cartbox Single Item -->
+                    <div class="cartbox__item" *ngFor="let productosC of productosCarrito">
+                        <div class="cartbox__item__thumb">
+                            <a href="product-details.html">
+                                <img [src]="productosC.logo" alt="small thumbnail" width="70" height="70">
+                            </a>
+                        </div>
+                        <div class="cartbox__item__content">
+                            <h5><a href="javascript:void(0)" class="product-name">{{productosC.nombreProducto}}</a></h5>
+                            <h6><a href="javascript:void(0)" class="product-name">{{productosC.textExtras}}</a></h6>
+                            <p>Cantidad: <span>{{productosC.cantidad}}</span></p>
+                            <span class="price">${{productosC.costo}}</span>
+                        </div>
+                        <button class="cartbox__item__remove" (click)="quitarElemento(productosC.id)">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="cartbox__total">
+                    <ul>
+                        <li><span class="cartbox__total__title">Total de artículos</span><span
+                                class="price">{{cantidadCarrito}}</span></li>
+                        <li class="shipping-charge">
+                            <span class="cartbox__total__title">Sub Total</span><span class="price">{{totalPagar |
+                                currency: 'USD' | lowercase}}<small> MXN</small></span>
+                        </li>
+                        <li class="shipping-charge" *ngIf="ubicacionEntrega.lat!='E01' || seleccionOpcionEnvio=='3'">
+                            <span class="cartbox__total__title">Costo Envío</span><span class="price">{{costoEnvio |
+                                currency: 'USD' | lowercase}}<small> MXN</small></span>
+                        </li>
+                        <li class="shipping-charge" *ngIf="ubicacionEntrega.lat!='E01' || seleccionOpcionEnvio=='3'">
+                            <span class="cartbox__total__title">Propina para el personal</span><span class="">
+                                <select class="form-control" [(ngModel)]="propinaSeleccionada"
+                                    (change)="cambiarPropina()">
+                                    <option [value]="propina.propina" *ngFor="let propina of listaPropina">
+                                        {{propina.propina}}%</option>
+                                </select>
+                            </span>
+                        </li>
+                        <li class="grandtotal">Total<span class="price">{{granTotal | currency: 'USD' |
+                                lowercase}}<small> MXN</small></span>
+                        </li>
+                        <small>Opción de entrega </small>
+                        <div>
+                            <select class="form-control" name="opcionEnvio" [(ngModel)]="seleccionOpcionEnvio"
+                                (change)="cambiarOpcionEnvio()">
+                                <option *ngFor="let oEnvio of listaIOpcionesEnvio" [value]="oEnvio.idTipo">
+                                    {{oEnvio.nombreTipo}}
+                                </option>
+                            </select>
+                        </div>
+                        <div *ngIf="seleccionOpcionEnvio!='1'">
+                            <small *ngIf="seleccionOpcionEnvio=='2'">Ingresa la hora que deseas recibir tu pedido
+                            </small>
+                            <small *ngIf="seleccionOpcionEnvio=='3'">Ingresa la hora que deseas pasar por tu pedido
+                            </small>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <select class="form-control" (change)="buscarHorarios()"
+                                        [(ngModel)]="opcionEnvioSeleccionada.fecha">
+                                        <option *ngFor="let fecha of fechasEntrega" [value]="fecha.fecha">
+                                            {{fecha.diaTXT}}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <select class="form-control" [(ngModel)]="opcionEnvioSeleccionada.hora">
+                                        <option *ngFor="let hora of horasEntrega" [value]="hora">
+                                            {{hora}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <input type="text" class="form-control" name="horaPAsar"
+                                [(ngModel)]="carritoCliente.horaEntrega" (change)="cambiarOpcionEnvio()" hidden>
+                        </div>
+
+                        <div *ngIf="ubicacionEntrega.lat!='E01' && seleccionOpcionEnvio!='3'">
+                            <li class="shipping-charge" style="font-size: 15px;">{{usuario.direccion}}<span class="">
+                                    <button class="cartbox__item__remove" title="Cambiar Direccion"
+                                        [routerLink]="['/perfil','direcciones']" routerLinkActive="router-link-active"
+                                        (click)="ocultarCarro()">
+                                        <i class="fa fa-refresh"></i>
+                                    </button>
+                                </span>
+                            </li>
+                        </div>
+                        <div *ngIf="ubicacionEntrega.lat==='E01' && seleccionOpcionEnvio!='3'">
+                            <div class="cartbox__buttons">
+                                <a class="food__btn" href="javascript:void(0)" [routerLink]="['/perfil','direcciones']"
+                                    routerLinkActive="router-link-active" (click)="ocultarCarro()">
+                                    <span>Registrar</span>
+                                </a>
+                            </div>
+                            Registra tu dirección para continuar con el pedido
+                            <span>&nbsp;</span>
+                            <br>
+                            <span>&nbsp;</span>
+                        </div>
+
+                        <li *ngIf="costoEnvioTXT==='E01' && seleccionOpcionEnvio!='3'">
+                            <span class="cartbox__total__title" style="color: red;">
+                                {{carritoCliente.nombreRestaurante}} no ofrece servicio a tu dirección ponte en contacto
+                                para acordar la entrega
+                            </span>
+                        </li>
+                        <div
+                            *ngIf="(usuario.telefono!='' && ubicacionEntrega.lat!='E01' && costoEnvioTXT!='E01') || seleccionOpcionEnvio==='3'">
+                            <label>Selecciona la forma de pago </label><br>
+                            <select name="formaPAgo" [(ngModel)]="formaPagoElegida" class="form-control">
+                                <option *ngFor="let fPAgo of listaFormaPago">{{fPAgo.forma}}</option>
+                            </select>
+                        </div>
+                        <li *ngIf="totalPagar<costoMinimo && seleccionOpcionEnvio!=='3'">
+                            <span class="cartbox__total__title" style="color: red;">
+                                Pedido mínimo para envío a domicilio
+                                {{carritoCliente.envioMinimo | currency: 'USD' | lowercase}}<br> Deseas agregar algo
+                                más?
+                            </span>
+                        </li>
+                        <li *ngIf="costoEnvioTXT==='E01' && seleccionOpcionEnvio!='3'">
+                            <span class="cartbox__total__title" style="color: red;">
+                                {{carritoCliente.nombreRestaurante}} no ofrece servicio a tu dirección ponte en contacto
+                                para acordar la entrega
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="cartbox__buttons"
+                    *ngIf="(usuario.telefono!='' && ubicacionEntrega.lat!='E01'  && costoEnvioTXT!='E01' && (totalPagar>=costoMinimo)) || seleccionOpcionEnvio==='3'">
+                    <div class="row">
+                        <div class="col-md-12"  *ngIf="usuario.telefono!=''">
+                            <!--  <a href="#myModal2" data-toggle="modal" data-target="#modal_aside_right" 
+                            class="food__btn" href="javascript:void(0)" (click)="ordenar()"><span>
+                                    Ordenar
+                                </span>
+                            </a>
+                            -->
+                            <div class="text-center">
+                                <a href="#myModal2" data-toggle="modal" data-target="#modal_aside_right"
+                                    class="food__btn" (click)="vntCobrar()">
+                                    Ordenar</a>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="cartbox__buttons" *ngIf="usuario.telefono===''">
+                    <input type="tel" class="form-control" name="numTelefono" [(ngModel)]="addNumTelefono">
+                    <br>
+                    <a class="food__btn" href="javascript:void(0)" (click)="actualizarInfoCliente()">
+                        <span>Registrar</span>
+                    </a>
+                    <span class="cartbox__total__title">
+                        Ingresa tu numero telefónico para continuar con el pedido
+                    </span>
+                    <span>&nbsp;</span>
+                    <br>
+                    <span>&nbsp;</span>
+                    <br>
+                    <br>
+                    <br>
+                </div>
+                <div class="cartbox__total" *ngIf="contactoEmpresa.length>0">
+                    <ul>
+                        <li class="grandtotal">{{contactoEmpresa[0].nombre}}
+                        </li>
+                        <li class="shipping-charge" style="font-size: 15px;">{{contactoEmpresa[0].direccion}}</li>
+                        <li class="shipping-charge" style="font-size: 15px;">{{contactoEmpresa[0].telefono}}</li>
+                        <li class="shipping-charge" style="font-size: 15px;">{{contactoEmpresa[0].correo}}</li>
+                    </ul>
+                </div>
+
+
+
+                <!--  <a class="food__btn" href="javascript:void()"><span>Programar Entrega </span></a>-->
+                <span>&nbsp;</span>
+                <br>
+                <span>&nbsp;</span>
+                <br>
+                <br>
+                <br>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div id="map58"></div>
+<div id="indicators"></div>
+
+
+
+<div class="accountbox-wrapper is-visible" *ngIf="banVerConfirmacionCompra">
+    <div class="accountbox text-left">
+        <div class="modal-header">
+            <h5 class="">Mi Pedido <small>
+                    <!--{{txtMSJ}}-->
+                </small></h5>
+            <span class="accountbox-close-button" (click)="banVerConfirmacionCompra=false"><i
+                    class="zmdi zmdi-close"></i></span>
+        </div>
+        <div class="modal-body">
+            <div class="cartbox__total">
+                <ul>
+                    <li><span class="cartbox__total__title">Total de artículos</span><span
+                            class="price">{{cantidadCarrito}}</span></li>
+                    <li class="shipping-charge">
+                        <span class="cartbox__total__title">Sub Total</span><span class="price">{{totalPagar
+                            | currency: 'USD' | lowercase}}<small> MXN</small></span>
+                    </li>
+                    <li class="shipping-charge"
+                        *ngIf="(ubicacionEntrega.lat && ubicacionEntrega.lat!='E01') || seleccionOpcionEnvio=='3'">
+                        <span class="cartbox__total__title">Costo Envío</span><span class="price">{{costoEnvio |
+                            currency: 'USD' | lowercase}}<small> MXN</small></span>
+                    </li>
+                    <li class="grandtotal">Total<span class="price">{{granTotal | currency: 'USD' |
+                            lowercase}}<small> MXN</small></span>
+                    </li>
+                </ul>
+            </div>
+            <div class="cartbox__buttons"
+                *ngIf="(usuario.telefono!='' && ubicacionEntrega.lat!='E01'  && costoEnvioTXT!='E01' && (totalPagar>=costoMinimo)) || seleccionOpcionEnvio==='3'">
+                <div class="row">
+                    <div class="col-md-12">
+                        <a class="food__btn" href="javascript:void(0)" *ngFor="let fPAgo of listaFormaPago"
+                            (click)="ordenar(fPAgo.id)"><span>
+                                {{fPAgo.forma}}
+                            </span>
+                            <div *ngIf="fPAgo.id==3">
+                                <i>Tarjeta BBVA, Visa Mastercard</i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

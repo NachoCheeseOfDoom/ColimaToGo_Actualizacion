@@ -1,0 +1,65 @@
+.nuevoMovil{
+    -webkit-align-self: flex-end;
+            -moz-align-self: flex-end;
+            -ms-flex-item-align: end;
+            align-self: flex-end;
+            color: black;
+            display: inline-block;
+            font-family: "Alegreya", serif;
+            font-size: 22px;
+            font-weight: 700;
+            line-height: 37px;
+            margin-left: 19px;
+}
+
+.side__title {
+    font-size: 25px;
+}
+
+.food__btn.btn--transparent {
+    background: #E2E1E1 none repeat scroll 0 0;
+    border: 1px solid #f2f2f2;
+    color: #000; }
+
+    .food__menu__prl {
+        padding: 10px 0; }
+
+
+.nuevoBtnDelMenu{
+    border: red 2px solid;
+    margin-top: 20px;
+    background: rgba(255, 255, 255, 0.3);
+    text-align: center;
+    padding: 6px 20px;
+    color: rgb(113, 113, 113);
+    border-radius: 50px;
+    transition: all ease-in-out 0.3s;
+    font-size: 14px;
+}
+
+.nuevoBtnDelMenu:hover{
+    color: var(--color-primary);
+    background: rgba(255, 0, 0, 0.148);
+    color: rgb(54, 54, 54);
+    box-shadow: 2px 4px 5px rgba(206, 18, 18, 0.45);
+}
+
+#estilos-imagen-del-menu{
+  width: 100%;
+  height: 100px;
+  border-radius: 50%;
+  float: left;
+  border: 1.5px solid red;
+}
+
+#espacio-entre-items-del-menu{
+  margin-bottom: 10px;
+  border: solid #DDEBF8 1px;
+  border-radius: 10px;
+}
+
+#imagen-del-restaurante{
+  width: 50%;
+  height: 200px;
+  object-fit: contain;
+}

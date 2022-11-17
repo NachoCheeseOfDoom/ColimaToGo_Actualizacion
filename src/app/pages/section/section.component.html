@@ -1,0 +1,90 @@
+<!--
+<div class="food__category__wrapper mt--40">
+    <div class="row">
+        <div class="col-lg-4 col-md-6 col-sm-12" *ngFor="let restaurante of listaRestaurantes">
+            <div class="food__item foo">
+                <div class="food__thumb">
+                    <a href="menu-details.html">
+                        <img [src]="restaurante.logo" alt="{{restaurante.nombre}}" width="340" height="401">
+                    </a>
+                </div>
+                <div class="food__title">
+                    <h2><a href="menu-details.html">{{restaurante.nombre}}</a></h2>
+                </div>
+            </div>
+            <small>{{restaurante.horario}}</small>
+        </div>
+    </div>
+</div>
+-->
+
+<!-- Inicio de Seccion Hero  -->
+<!-- <section id="hero" class="hero d-flex align-items-center section-bg">
+  <div class="container">
+    <div class="row justify-content-between gy-5">
+      <div class="col-lg-5 order-2 order-lg-1 d-flex flex-column justify-content-center align-items-center align-items-lg-start text-center text-lg-start">
+        <h2 data-aos="fade-up">Disfrute su<br>Deliciosa Comida</h2>
+        <p data-aos="fade-up" data-aos-delay="100">Visite todos los restaurantes disponibles y ordene a domicilio.</p>
+        <div class="d-flex" data-aos="fade-up" data-aos-delay="200">
+          <a href="#book-a-table" class="btn-book-a-table">Book a Table</a> -->
+          <!-- <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Watch Video</span></a> -->
+        <!-- </div>
+      </div>
+        <div class="col-lg-5 order-1 order-lg-2 text-center text-lg-start">
+          <img src="assets/img2/hero-img.png" class="img-fluid" alt="" data-aos="zoom-out" data-aos-delay="300">
+        </div>
+    </div>
+  </div>
+</section> -->
+<!-- End Hero Section -->
+
+<!-- Inicio Sección de los restaurantes -->
+<section class="food__category__area bg--white ">
+    <div class="container">
+        <div class="row">
+            <!-- Start Single Menu Item -->
+            <div class="col-lg-4 col-sm-12 col-md-6" *ngFor="let restaurante of listaRestaurantes">
+
+                <!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Agregue id CSS: 👉 id="sombra-del-container" -->
+                <!-- lo puede encontrar en 👉 src\assets\style.css -->
+                <div id="sombra-del-container" class="menu__grid__item wow fadideInLeft">
+                <!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Agregue id CSS -->
+                    <div  class="menu__grid__thumb" class="item web">
+
+                <!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Agregue id CSS: 👉 id="sombra-del-imagen" -->
+                <!-- lo puede encontrar en 👉 src\assets\style.css -->
+                        <a id="sombra-del-imagen"class="item-wrap fancybox" [routerLink]="'restaurante/'+restaurante.nombre" >
+                <!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Agregue id CSS -->
+                            <div class="work-info">
+                                <h3>{{restaurante.nombre}}</h3>
+                                <span>{{restaurante.horario}}</span>
+                            </div>
+                            <img [src]="restaurante.logo" alt="{{restaurante.nombre}}" width="100%" height="300">
+                        </a>
+                        <!--  <div class="grid__item__offer">
+                    <span>Special</span>
+                    <span>Offer</span>
+                </div>
+                -->
+                    </div>
+                    <div class="menu__grid__inner">
+                        <div class="menu__grid__details">
+                            <h2 class="cardHeader"><a [routerLink]="'restaurante/'+restaurante.nombre">{{restaurante.nombre}}</a></h2>
+                            <div class="card-body">
+                                <p class="cardText"> <small>{{restaurante.horario}}</small></p>
+                                    <div>
+                <!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Agregue clase CSS: id="boton-de-las-secciones" -->
+                <!-- lo puede encontrar en 👉 src\assets\style.css -->
+                                        <a style="margin-top: 10px;" id="boton-de-las-secciones" [routerLink]="'restaurante/'+restaurante.nombre">VER</a>
+                <!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Agregue clase CSS -->
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Fin de Sección de los restaurantes -->
+

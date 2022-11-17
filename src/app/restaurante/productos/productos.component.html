@@ -1,0 +1,201 @@
+<!-- Inicio Header del restaurante -->
+<div class="row" *ngIf="detalleRestaurante">
+    <div class="col-lg-12 col-md-12 col-sm-12">
+        <div class="bradcaump__inner text-center">
+<!--!! ========================================================================== 👇 id agregada donde modifico la imagen👉 id="imagen-del-restaurante" -->
+            <img id="imagen-del-restaurante" [src]="detalleRestaurante.logoProductos" alt="{{detalleRestaurante.nombre}}" 
+                *ngIf="!tipoDispositivo">
+            <img id="imagen-del-restaurante" [src]="detalleRestaurante.logoProductos" alt="{{detalleRestaurante.nombre}}" 
+                *ngIf="tipoDispositivo">
+            <!-- <h2 class="bradcaump-title">{{detalleRestaurante.nombre}}</h2> -->
+<!--!! ========================================================================== 👆 id agregada donde modifico la imagen👉 id="imagen-del-restaurante" -->
+
+        </div>
+    </div>
+</div>
+<!-- Fin Header del restaurante -->
+
+<!-- Inicio del menu de los restaurantes -->
+<section style="padding: 10px 0px 80px 0px;" class="fd__special__menu__area" *ngIf="detalleRestaurante">
+    <div class="special__food__menu">
+        <div class="food__menu__prl bg-image--Resta">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <!--  <div class="food__nav nav nav-tabs" role="tablist">
+                            <a class="active" id="nav-all-tab" data-toggle="tab" href="#nav-all" role="tab">All</a>
+                            <a id="nav-breakfast-tab" data-toggle="tab" href="#nav-breakfast" role="tab">Breakfast</a>
+                            <a id="nav-lunch-tab" data-toggle="tab" href="#nav-lunch" role="tab">Lunch</a>
+                            <a id="nav-dinner-tab" data-toggle="tab" href="#nav-dinner" role="tab">Dinner</a>
+                            <a id="nav-coffee-tab" data-toggle="tab" href="#nav-coffee" role="tab">Coffee</a>
+                            <a id="nav-snacks-tab" data-toggle="tab" href="#nav-snacks" role="tab">Snacks</a>
+                        </div>
+                        -->
+<!-- ===================================================================== Filtro del menu👇-->
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="grid__show d-flex justify-content-between align-items-center">
+                                    <div class="grid__show__item">
+                                    </div>
+                                    <div class="grid__show__btn">
+                                        <select class="form-control" name="filtro" [(ngModel)]="idCategoriaVer"
+                                            (change)="filtrarCategorias()">
+                                            <option *ngFor="let categoria of categoriasMenu"
+                                                [value]="categoria.idCategoria">
+                                                {{categoria.nombreCategoria}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+<!-- ===================================================================== Filtro del menu ☝️-->
+                        <div class="fd__tab__content tab-content" id="nav-tabContent">
+                            <!-- Start Single tab -->
+                            <div class="single__tab__panel tab-pane fade show active" id="nav-all" role="tabpanel">
+                                <div class="tab__content__wrap">
+                                    <!-- Start Single Tab Content -->
+                                    <div class="single__tab__content">
+                                        <!-- Start Single Food -->
+                                        <div class="row" *ngFor="let iMenu of verCategoriasMenu">
+<!-- ===================================================================== Separador de menu 👇-->
+                                            <div class="col-lg-12"
+                                                *ngIf="iMenu.productoCategoria && iMenu.productoCategoria.length>0">
+                                                <div class="food__search">
+                                                    <br>
+                                                    <h4 class="side__title">{{iMenu.nombreCategoria}}</h4>
+                                                </div>
+                                            </div>
+<!-- ===================================================================== Separador de menu Filtro ☝️-->
+<!--!! ========================================================================== 👇 id agregado dando espacio entre los productos del menu y mas👉 id="espacio-entre-items-del-menu" -->
+                                            <div class="col-md-6"  *ngFor="let item of iMenu.productoCategoria">
+                                                <div class="food__menu" id="espacio-entre-items-del-menu">
+                                                    <!-- lo pueden encontar en los estilos de los productos: productos.component.css -->
+<!--!! ========================================================================== 👆 id agregado dando espacio entre los productos del menu y mas  👉 id="espacio-entre-items-del-menu" -->
+
+                                                    <table >
+                                                        <tr>
+                                                            <td class="text-center" style="width: 106px;">
+                                                                <div class="menu-img">
+                                                                    <a [routerLink]="['/restaurante', nombreRestaurante, item.idProducto]"
+                                                                        routerLinkActive="router-link-active">
+                                                                        <img [src]="item.imagenProducto"
+                                                                            [alt]="item.nombreProducto"
+                                                                            id="estilos-imagen-del-menu">
+                                                    <!-- lo pueden encontar en los estilos de los productos: productos.component.css -->
+<!--!! ========================================================================== 👆 id para darle estilo al imagen👉 id="estilos-imagen-del-menu" -->
+                                                                    </a>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="food__menu__details" >
+                                                                    <div class="fd__menu__title__prize" >
+                                                                        <h4> <a
+                                                                                [routerLink]="['/restaurante', nombreRestaurante, item.idProducto]">
+                                                                                {{item.nombreProducto}}
+                                                                            </a></h4>
+                                                                        <span class="menu__prize"
+                                                                            *ngIf="!tipoDispositivo">
+                                                                            <a
+                                                                                [routerLink]="['/restaurante', nombreRestaurante, item.idProducto]">
+                                                                                ${{item.productoPrecio}}
+                                                                            </a></span>
+                                                                    </div>
+                                                                    <div class="fd__menu__details">
+                                                                        <p><a
+                                                                                [routerLink]="['/restaurante', nombreRestaurante, item.idProducto]">
+                                                                                {{item.productoDescripcion}}</a></p>
+                                                                        <div class="delivery__time__rating">
+                                                                            <ul class="fd__rating float-right">
+
+<!-- ===================================================================== Boton del menu 👇-->
+                                                                                <div class="menu-Btn">
+<!--!! ========================================================================== 👇 estilos del boton del menu👉 class="nuevoBtnDelMenu" -->
+                                                    <!-- lo pueden encontar en los estilos de los productos: productos.component.css -->
+                                                                                    <a class="nuevoBtnDelMenu"
+                                                                                        [routerLink]="['/restaurante', nombreRestaurante, item.idProducto]">
+                                                                                        <span
+                                                                                            *ngIf="item.productoDisponible==='1'">Ordenar</span>
+                                                                                        <span
+                                                                                            *ngIf="item.productoDisponible!='1'">Agotado</span>
+                                                                                    </a>
+                                                                                </div>
+<!-- ===================================================================== Boton del menu ☝️-->
+
+                                                                                <div class="food__menu__details"
+                                                                                    *ngIf="tipoDispositivo">
+                                                                                    <div class="nuevoMovil">
+                                                                                        <span
+                                                                                            class="menu__prize text-center">
+                                                                                            <a
+                                                                                                [routerLink]="['/restaurante', nombreRestaurante, item.idProducto]">
+                                                                                                ${{item.productoPrecio}}
+                                                                                            </a></span>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Fin del menu de los restaurantes -->
+
+
+<!-- ! el Footer está totalmente editado para hacer modificaciones de los estilos ir a 👉src\assets\css2\style.css (Tamaño del footer) 👉 src\assets\css2\main.css (Para lo demas) -->
+<!-- Inicio del Footer del restaurante -->
+<footer id="footer" class="footer align-items-center">
+<div class="container"*ngIf="contactoEmpresa.length>0">
+    <div class="row gy-3  text-center justify-content-center align-items-center">
+        
+        <!-- Inicio de Contacto -->
+        <div class="col-lg-4 col-md-6 d-flex justify-content-center align-items-center">
+                <i class="bi bi-telephone icon"></i>
+            <div class="ct__address">
+                <h4>Reservaciones</h4>
+                <p>
+                    <strong>Tel: </strong><a href="tel:{{contactoEmpresa[0].telefono}}">{{contactoEmpresa[0].telefono}}</a><br>
+                    <strong>Email: </strong><a href="mailto:{{contactoEmpresa[0].correo}}">{{contactoEmpresa[0].correo}}</a> <br>
+                </p>
+            </div> 
+        </div>
+        <!-- Fin de contacto -->
+
+        <!-- Inicio de Domicilio -->
+        <div class="col-lg-4 col-md-6 d-flex justify-content-center align-items-center">
+                <i class="bi bi-geo-alt icon"></i>
+            <div class="ct__address">
+                <h4>Domicilio</h4>
+                <p>{{contactoEmpresa[0].direccion}}</p>
+            </div>
+        </div>
+        <!-- Fin de Domicilio -->
+
+        <!-- Inicio de Horario -->
+        <div class="col-lg-4 col-md-6 d-flex justify-content-center align-items-center">
+            <i class="bi bi-clock icon"></i>
+            <div class="ct__address">
+                <h4>Horario</h4>
+                <p>{{detalleRestaurante.horario}}</p>
+            </div>
+        </div>
+        <!-- Fin de Horario -->
+    </div>
+</div>
+</footer>
+<!-- Fin del Footer del restaurante -->

@@ -1,0 +1,274 @@
+body {
+    margin: 0px;
+    padding: 80px;
+    font-size: 21px;
+    background-color: #fff;
+    font-family: Helvetica, arial, sans-serif;
+  }
+  
+  #checkboxes,
+  #rbtns {
+    width: 300px;
+    margin: 0 auto;
+  }
+  
+  #rbtns {
+    margin-top: 30px;
+  }
+  
+  .lb {
+    font-size: 26px;
+    font-weight: bold;
+    padding: 10px 0px;
+    color: #503830;
+  }
+  
+  label {
+    display: block;
+    color: #a9a9a9;
+    cursor: pointer;
+    margin-bottom: 12px;
+  }
+  
+  label:after {
+    content: '.';
+    clear: both;
+    display: block;
+    height: 0px;
+    visibility: hidden;
+  }
+  
+  input[type="checkbox"],
+  input[type="radio"] {
+    display: none;
+  }
+  
+  .ch,
+  .rd {
+    width: 18px;
+    height: 18px;
+    padding: 3px;
+    position: relative;
+    margin-right: 7px;
+    background-color: #efeded;
+    float: left;
+  }
+  
+  .ch {
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -o-border-radius: 4px;
+    -ms-border-radius: 4px;
+  }
+  
+  .rd {
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -o-border-radius: 50%;
+    -ms-border-radius: 50%;
+  }
+  
+  .ch:before,
+  .ch:after {
+    content: '';
+    background-color: #fff;
+    position: absolute;
+    width: 4px;
+  }
+  
+  .ch:before {
+    
+    
+  }
+  
+  .ch:after {
+    
+   
+  }
+  
+  .ch:before,
+  .ch:after {
+    display: none;
+  }
+  
+  #checkboxes input[type="checkbox"]:checked + .ch:before,
+  #checkboxes input[type="checkbox"]:checked + .ch:after {
+    display: block;
+  }
+  
+  #checkboxes input[type="checkbox"]:checked + .ch {
+    background-color: #dc3545;
+  }
+  
+  #checkboxes label:active input[type="checkbox"] + .ch {
+    box-shadow: 0 0 0 0.2em rgba(0, 188, 212, 0.16);
+    -webkit-box-shadow: 0 0 0 0.2em rgba(0, 188, 212, 0.16);
+    -moz-box-shadow: 0 0 0 0.2em rgba(0, 188, 212, 0.16);
+    -o-box-shadow: 0 0 0 0.2em rgba(0, 188, 212, 0.16);
+    -ms-box-shadow: 0 0 0 0.2em rgba(0, 188, 212, 0.16);
+  }
+  
+  #checkboxes label:active input[type="checkbox"]:checked + .ch {
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    -o-box-shadow: none;
+    -ms-box-shadow: none;
+  }
+  
+  .rd:before {
+    content: '';
+    position: absolute;
+   
+    background-color: #fff;
+    border: 6px solid #dc3545;
+    border-radius: 50%;
+   
+  }
+  
+  .rd:before {
+    transform: scale(0, 0);
+    -webkit-transform: scale(0, 0);
+    -moz-transform: scale(0, 0);
+    -o-transform: scale(0, 0);
+    -ms-transform: scale(0, 0);
+    transition: 0.2s ease transform;
+    -webkit-transition: 0.2s ease transform;
+    -moz-transition: 0.2s ease transform;
+    -o-transition: 0.2s ease transform;
+    -ms-transition: 0.2s ease transform;
+  }
+  
+  #rbtns input[type="radio"]:checked + .rd:before {
+    transform: scale(1, 1);
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -o-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+  }
+
+
+  .disponible {
+    color:black;
+  }
+
+  .cartbox__buttonsOP a {
+    margin-top: 30px;
+    font-family: Open Sans;
+    font-weight: 700;
+    text-transform: capitalize;
+    justify-content: center 
+  
+  }
+
+  .centerIMG{
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .food__menu__prl {
+    padding: 10px 0; }
+    .section-padding--lg {
+      padding: 10px 0; }
+
+
+  #nombre-del-platillo{
+    font-family: 'Open Sans', sans-serif;
+    color: black;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+    }
+
+  #borde-abjo-del-nombre{
+    border-bottom: solid 2px red;
+    margin-bottom: 20px;
+    width: 150px;
+    }
+
+#imagen-del-producto{
+  border-radius: 10px;
+  width: 350px;
+  height: 200px;
+}
+
+#boton-agregar-al-carrito,#boton-para-regresar-al-menu{
+  margin-top: 20px;
+  color: white;
+  /* margin: 0 auto; */
+  border: none;
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 1px;
+  display: inline-block;
+  padding: 12px 30px;
+  border-radius: 20px;
+  width: fit-content;
+  transition: 0.5s;
+  background: var(--color-primary);
+  box-shadow: 0px 8px 28px rgba(206, 18, 18, 0.2);
+}
+
+#boton-agregar-al-carrito:hover{
+  background: rgba(206, 18, 18, 0.8);
+  box-shadow: 0px 4px 28px rgba(206, 18, 18, 0.45);
+}
+
+#boton-para-regresar-al-menu:hover{
+  background: rgba(206, 18, 18, 0.8);
+  box-shadow: 0px 4px 28px rgba(206, 18, 18, 0.45);
+}
+
+
+.alert {
+  padding: 20px;
+  background-color: #f44336;
+  color: white;
+}
+
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.closebtn:hover {
+  color: black;
+}
+
+
+#boton-de-accountbox{
+	color: white;
+  margin: 0 auto;
+  border: none;
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 1px;
+  display: inline-block;
+  padding: 12px 35px;
+  border-radius: 50px;
+  transition: 0.5s;
+  color: #fff;
+  background: var(--color-primary);
+  box-shadow: 0px 8px 28px rgba(206, 18, 18, 0.2);
+}
+
+#boton-de-accountbox:hover{
+  background: rgba(206, 18, 18, 0.8);
+  box-shadow: 0px 4px 28px rgba(206, 18, 18, 0.45);
+}
+
+#recupera-contrasena{
+	cursor: pointer;
+	text-align: center;
+	display: block;
+	margin-top: 20px;
+	font-weight: 600;
+	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+}

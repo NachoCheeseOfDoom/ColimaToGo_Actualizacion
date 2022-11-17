@@ -1,0 +1,102 @@
+<div class="container">
+
+  <a id="botones-generales" [routerLink]="['/perfil']" routerLinkActive="router-link-active">
+    Regresar a Perfil
+  </a>
+
+  <div class="row">
+    <div class="col-md-4">
+      <div class="food__category__area mt--60">
+        <h4 class="side__title">Mis Direcciones</h4>
+        <ul class="food__category">
+          <li *ngFor="let direccion of listaDireccionesUsuario">
+            <a href="javascript:void(0)" (click)="verDireccionM(direccion.id)">
+              {{direccion.calle}} <span *ngIf="direccion.predeterminada">
+                <small style="color: green;">
+                  Predeterminada
+                </small>
+                <button class="cartbox__item__remove">
+                  <i class="fa fa-edit"></i>
+                </button></span>
+              <span *ngIf="!direccion.predeterminada">
+                <small>Hacer predeterminada</small>
+                <button class="cartbox__item__remove" (click)="hacerPredeterminada(direccion.id)">
+                  <i class="fa fa-check"></i>
+                </button>
+              </span>
+            </a>
+            <div class="shop__qun">
+              <button class="cartbox__item__remove" (click)="eliminarDireccion(direccion.id)">
+                <i class="fa fa-trash-o"></i>
+              </button>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div id="map58"></div>
+      <div id="indicators"></div>
+    </div>
+    <div class="col-md-8">
+      <!-- <div class="form-group">
+        <form autocomplete="off">
+          <label> Ingresa tu dirección o mueve el marcador para buscar tu dirección</label>
+          <input type="text" class="form-control" (keydown.enter)="$event.preventDefault()"
+            placeholder="Escribe tu dirección" autocomplete="off" autocorrect="off" autocapitalize="off"
+            spellcheck="off" type="text" #search>
+        </form>
+      </div> -->
+      <!-- ! ===============================================Nuevo input agregado=================================== -->
+      <div class="group">
+        <input placeholder="" id="ingresar-direccion-input" name="direccion" type="text" required="required" (keydown.enter)="$event.preventDefault()" #search>
+        <span class="highlight"></span><span class="bar-direccion"></span>
+        <label id="ingresar-direccion-lable">Ingresa dirección o mueve el marcador</label>
+      </div>
+      <!-- ! ================================================================================================================= -->
+
+      <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
+        <agm-marker [latitude]="latitude" [longitude]="longitude" [markerDraggable]="true"
+          (dragEnd)="markerDragEnd($event)"></agm-marker>
+      </agm-map>
+
+  <!-- ! ===============================================Nuevos inputs agregados=================================== -->
+      <div class="row" *ngIf="verDireccion">
+
+        <div style="margin-top: 40px;" class="group col-md-5 p-2">
+          <input id="ingresar-calle-input" name="calle" type="text" required="required" [(ngModel)]="verDireccion.calle">
+          <span class="highlight"></span><span class="bar-calle"></span>
+          <label class="p-2" id="ingresar-calle-lable">Calle</label>
+        </div>
+
+        <div style="margin-top: 40px;" class="group col-md-3 mt--40 p-2">
+          <input id="ingresar-colonia-input" name="calle" type="text" required="required" [(ngModel)]="verDireccion.colonia">
+          <span class="highlight"></span><span class="bar-colonia"></span>
+          <label class="p-2" id="ingresar-colonia-lable">Colonia</label>
+        </div>
+
+        <div style="margin-top: 40px;" class="group col-md-3 mt--40 p-2">
+          <input id="ingresar-colonia-input" name="calle" type="text" required="required" [(ngModel)]="verDireccion.municipio">
+          <span class="highlight"></span><span class="bar-colonia"></span>
+          <label class="p-2" id="ingresar-colonia-lable">Municipio</label>
+        </div>
+
+      </div>
+  <!-- ! ================================================================================================== -->
+
+      <div class="row">
+  <!-- ! ===============================================Nuevo input agregado=================================== -->
+        <div class="group col-lg-8 p-2">
+          <input id="ingresar-direccion-input" name="calle" type="text" required="required" [(ngModel)]="verDireccion.referencia">
+          <span class="highlight"></span><span class="bar-direccion"></span>
+          <label class="p-2" id="ingresar-direccion-lable">Referencia</label>
+        </div>
+  <!-- ! ================================================================================================== -->
+
+        <div class="col-md-5 mt--50">
+          <a id="botones-generales" href="javascript:void(0)" (click)="guardarDireccion()">
+            Guardar
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

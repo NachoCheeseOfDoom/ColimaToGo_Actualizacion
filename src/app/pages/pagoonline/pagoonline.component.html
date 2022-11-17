@@ -1,0 +1,43 @@
+<div class="wrapper" id="wrapper">
+    <div class="ht__bradcaump__area bg-image--20Temporal">
+        <div class="ht__bradcaump__wrap d-flex align-items-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="bradcaump__inner text-center brad__white">
+                            <h2 class="bradcaump-title"></h2>
+                            <nav class="bradcaump-inner">
+                                <span class="brd-separetor"><i class="zmdi zmdi-long-arrow-right"></i></span>
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-lg-12" *ngIf="datosPago.serializableData!='completed'">
+                                            <div class="section__title title__style--2 service__align--center">
+                                                {{datosPago.serializableData}}
+                                                <h2 class="title__line">Pago Pendiente</h2>
+                                                <p style="color: red;">{{datosPago.error_message}} </p>
+                                                <div class="list__btn">
+                                                    <a class="food__btn grey--btn theme--hover" href="javascript:void()"
+                                                        (click)="cobrarDeNuevo()">Pagar</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12" *ngIf="datosPago.serializableData=='completed'">
+                                            <div class="section__title title__style--2 service__align--center">
+                                                {{datosPago.serializableData}}
+                                                <h2 class="title__line">Pagado</h2>
+                                                <p style="color: red;">{{datosPago.error_message}} </p>
+                                                <div class="list__btn">
+                                                    <a class="food__btn grey--btn theme--hover" [routerLink]="['/perfil', datosPago.idPedido]">Ver mi Pedido</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

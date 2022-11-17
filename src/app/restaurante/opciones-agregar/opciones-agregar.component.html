@@ -1,0 +1,291 @@
+<section class="blog__list__view section-padding--lg menudetails-right-sidebar bg--white">
+    <div class="container">
+
+        <div class="row">
+        
+            <div class="col-lg-12 col-md-12 col-sm-12" *ngIf="dProducto.info">
+                <div class="food__menu__container">
+                    <div class="food__menu__inner d-flex flex-wrap flex-md-nowrap flex-lg-nowrap">
+
+        <!-- 👇 !======================================Espacio del nombre de platillo y de la foto ===================================== -->
+                        <div class="food__menu__thumb" *ngIf="!tipoDispositivo">
+                            <!--!!!! id's agregados: 👉nombre-del-platillo👈👉borde-abajo-del-platillo👈  -->
+                                <h2 id="nombre-del-platillo">{{dProducto.info.nombreProducto}}</h2>
+                                <div id="borde-abjo-del-nombre"></div>
+                            <img id="imagen-del-producto" [src]="dProducto.info.urlImagen" alt="images" title="1">
+                        </div>
+
+                            <!--!!!! id's agregados: 👉nombre-del-platillo👈👉borde-abajo-del-platillo👈  -->
+                        <div class="food__menu__thumb centerIMG" *ngIf="tipoDispositivo">
+                                <h2 id="nombre-del-platillo">{{dProducto.info.nombreProducto}}</h2>
+                                <div id="borde-abjo-del-nombre"></div >
+                            <img id="imagen-del-producto" [src]="dProducto.info.urlImagen" alt="images" title="1">
+                        </div>
+        <!-- 👆 !======================================================================================================== -->
+
+                        <div class="food__menu__details">
+                            <div class="food__menu__content">
+                                <h4 *ngIf="dProducto.info.diponibleProducto!=='1'">Agotado</h4>
+                                <ul class="food__dtl__prize d-flex">
+                                    <!-- <li class="old__prize">$50</li>-->
+                                    <li>${{dProducto.info.precioProducto}}</li>
+                                </ul>
+                                <!-- <ul class="rating">
+                                    <li><i class="fa fa-star"></i></li>
+                                    <li><i class="fa fa-star"></i></li>
+                                    <li><i class="fa fa-star"></i></li>
+                                    <li><i class="fa fa-star"></i></li>
+                                    <li><i class="fa fa-star"></i></li>
+                                </ul>-->
+                                <p><b style="color: black">Descripción</b><br>
+                                    {{dProducto.info.productoDescripcion}}
+                                </p>
+
+                                <div class="single-accordion" *ngFor="let catalgo of dProducto.detalles; let k = index">
+                                    <a class="accordion-head" data-toggle="collapse" data-parent="#checkout-accordion"
+                                        href="#{{catalgo.id}}">{{catalgo.nombre}}</a>
+                                    <span *ngIf="catalgo.obligatorio=='1'">*Selecciona {{catalgo.cantidad}}</span>
+                                    <div id="{{catalgo.id}}" class="collapse show">
+                                        <div id="checkboxes" *ngIf="catalgo.cantidad != '1E'">
+                                            <table >
+                                                <tr *ngFor="let opcionesCat of catalgo.opciones; let k=index">
+                                                    <td>
+                                                        <label *ngIf="opcionesCat.disponible==='1'" class="disponible">
+                                                            <input type="checkbox" [value]="opcionesCat.id"
+                                                                (click)="agregarTemporal(catalgo.id,opcionesCat.id)">
+                                                            <div class="ch"></div>
+                                                            {{opcionesCat.nombre}}
+
+                                                        </label>
+                                                        <label *ngIf="opcionesCat.disponible!=='1'">
+                                                            <input type="checkbox" [value]="opcionesCat.id" disabled>
+                                                            <div class="ch"></div>
+                                                            {{opcionesCat.nombre}} <small>(Agotado)</small>
+                                                        </label>
+                                                    </td>
+                                                    <td *ngIf="opcionesCat.disponible==='1'" class="disponible">
+                                                        <span *ngIf="opcionesCat.precio!='0'" class="text-left">
+                                                            +${{opcionesCat.precio}}
+                                                        </span>
+                                                    </td> 
+                                                    <td *ngIf="opcionesCat.disponible!='1'">
+                                                        <span *ngIf="opcionesCat.precio!='0'" class="text-left">
+                                                            +${{opcionesCat.precio}}
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+
+                                        </div>
+                                        <div id="rbtns" *ngIf="catalgo.cantidad == '1E'">
+                                            <table>
+                                                <tr *ngFor="let opcionesCat of catalgo.opciones; let k=index">
+                                                    <td>
+                                                        <label>
+                                                            <input type="radio" name="radio" [value]="opcionesCat.id"
+                                                                (click)="agregarTemporal(catalgo.id,opcionesCat.id)">
+                                                            <div class="rd"></div>{{opcionesCat.nombre}}
+                                                        </label>
+                                                    </td>
+                                                    <td>
+                                                        <span *ngIf="opcionesCat.precio!='0'" class="text-left">
+                                                            ${{opcionesCat.precio}}
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div *ngIf="dProducto.info.diponibleProducto==='1'">
+                                    <div class="product-action-wrap">
+                                        <!--   <div class="prodict-statas"><span>Food Type : Taco</span></div>-->
+                                        <div class="product-quantity " *ngIf="!tipoDispositivo">
+                                            <form id='myform' method='POST' action='#'>
+                                                <div class="single-contact-form">
+                                                    <div class="">
+                                                        <textarea class="form-control" name="message"
+                                                            [(ngModel)]="notas" placeholder="Notas" rows="3"></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="product-quantity ">
+                                                    <div class="cart-plus-minus">
+                                                        <input class="cart-plus-minus-box" type="button"
+                                                            name="qtybutton" value="-" (click)="cambiarCantidad(1)">
+
+                                                        <input class="cart-plus-minus-box" type="text"
+                                                            [(ngModel)]="cantidad" name="qtybutton" value="1">
+
+                                                        <input class="cart-plus-minus-box" type="button"
+                                                            name="qtybutton" value="+" (click)="cambiarCantidad(2)">
+
+                                <!-- ! 👇====================================== Boton para agregar al carrito, Id agregada: id="boton-agregar-al-carrito" ===================================== -->
+                                                        <div class="cartbox__inner text-left cartbox__buttonsOP ">
+                                                            <a id="boton-agregar-al-carrito" href="javascript:void(0)"
+                                                                (click)="agregarCarrito()">Agregar al carrito</a>
+                                                        </div>
+                                <!-- 👆 !=========================================================================== -->
+
+                                <!-- ! 👇=========================================== Boton para regresar al menu, Id agregada: id="boton-para-regresar-al-menu" ================================================= -->
+                                                        <div class="cartbox__inner text-left cartbox__buttonsOP">
+                                                            <a id="boton-para-regresar-al-menu" [routerLink]="['/restaurante', detalleRestaurante.nombre]"
+                                                                routerLinkActive="router-link-active">Regresar al menú de {{detalleRestaurante.nombre}}</a>
+                                                        </div>
+                                <!-- 👆!============================================================================================ -->
+
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="tipoDispositivo  && dProducto.info.diponibleProducto==='1'">
+                        <div class="single-contact-form">
+                            <div class="">
+                                <textarea class="form-control" name="message" [(ngModel)]="notas" placeholder="Notas"
+                                    rows="2"></textarea>
+                            </div>
+                        </div>
+                        <div class=" text-center">
+                            <div class="cart-plus-minus">Cantidad
+                                <table>
+                                    <tr>
+                                        <td style="width: 20%;"></td>
+                                        <td>
+                                            <input class="cart-plus-minus-box" type="button" name="qtybutton" value="-"
+                                                (click)="cambiarCantidad(1)">
+                                            <input class="cart-plus-minus-box" type="text" [(ngModel)]="cantidad"
+                                                name="qtybutton" value="01">
+                                            <input class="cart-plus-minus-box" type="button" name="qtybutton" value="+"
+                                                (click)="cambiarCantidad(2)">
+                                        </td>
+                                    </tr>
+                                </table>
+                                <div class=" text-center cartbox__buttonsOP">
+                                    <a class="food__btn" href="javascript:void(0)" (click)="agregarCarrito()">Agregar
+                                        <b>{{cantidad}}</b> al carritos</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="accountbox-wrapper is-visible" *ngIf="banVerLogin">
+    <div class="accountbox text-left">
+        <ul class="nav accountbox__filters" id="myTab" role="tablist">
+            <!-- ! 👇=============================Alerta Agregada============================================ -->
+            <div class="alert">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+                <strong>Atención!</strong> Para hacer el pedido de <strong>{{dProducto.info.nombreProducto}}</strong> debes ingresar a tu cuenta.
+            </div>
+            <!-- ! 👆======================================================================================== -->
+            <!-- <small style="color: black; font-weight: bold;">{{ 'Para poder agregar ' + dProducto.info.nombreProducto + ' debes ingresar a tu cuenta!!'}}</small> -->
+            
+            <li>
+                <a [ngClass]="{'active': banderaLoginRegistro}" id="log-tab" style="cursor: pointer;"
+                    (click)="banderaLoginRegistro=true">
+                    Entrar</a>
+            </li>
+            <li>
+                <a [ngClass]="{'active': !banderaLoginRegistro}" id="profile-tab" style="cursor: pointer;"
+                    (click)="banderaLoginRegistro=false">
+                    Registrarse</a>
+            </li>
+        </ul>
+        <div class="accountbox__inner tab-content" id="myTabContent">
+            <div class="accountbox__login tab-pane fade show active" id="log" *ngIf="banderaLoginRegistro">
+                <form action="#">
+
+                    <div class="accountbox-login__others">
+                        <h6>Entrar con</h6>
+                        <div class="social-icons text-center">
+                            <ul>
+                                <li class="facebook">
+                                    <a (click)="entrarFB()">
+                                        <i class="fa fa-2x fa-facebook"></i>
+                                    </a>
+                                </li>
+                                <li class="pinterest">
+                                    <a (click)="entrarconGoogle()">
+                                        <i class="fa fa-2x fa-google-plus"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="single-input">
+                        <input class="cr-round--lg"type="email" placeholder="Correo" name="correo"
+                            [(ngModel)]="usuarioN.correo">
+                        <!-- <label class="user-labelsfsd">First Name</label> -->
+                    </div>
+                    <div class="single-input">
+                        <input class="cr-round--lg" type="password" placeholder="Contraseña" name="contrasena"
+                            [(ngModel)]="usuarioN.contrasena">
+                    </div>
+                    <div class="single-input">
+                        <div class="social-icons text-center">
+                            <!-- ! 👇==========================Bontenes editados id agregada:👉 id="boton-de-accountbox" ======================================== -->
+                            <ul>
+                                <li class="facebook">
+                                    <button id="boton-de-accountbox" type="button"
+                                        (click)="entrarCorreo()"><span>Entrar</span></button>
+                                </li>
+                                <li>
+                                    <button id="boton-de-accountbox" type="button"
+                                        (click)="banderaLoginRegistro=false"><span>Registrarse</span></button>
+                                </li>
+                            </ul>
+                            <!-- ! 👆============================================================================================== -->
+                        </div>
+                    </div>
+                    <!-- ! 👇==========================Recuperar la contrasena: 👉 id="recupera-contrasena" ======================================== -->
+                    <div class="single-input">
+                        <h5>
+                            <a id="recupera-contrasena" href="javascript:void()" (click)="recuperarcuenta()">
+                                Recupera tu contraseña
+                            </a>
+                        </h5>
+                    </div>
+                    <!-- ! 👆============================================================================================== -->
+                </form>
+            </div>
+            <div class="accountbox__register tab-pane fade show active" id="profile" *ngIf="!banderaLoginRegistro">
+                <form action="#">
+                    <div class="single-input">
+                        <input class="cr-round--lg" type="text" placeholder="Nombre" name="a1"
+                            [(ngModel)]="usuarioN.nombre">
+                    </div>
+                    <div class="single-input">
+                        <input class="cr-round--lg" type="email" placeholder="Correo" name="a51"
+                            [(ngModel)]="usuarioN.correo">
+                    </div>
+                    <div class="single-input">
+                        <input class="cr-round--lg" type="tel" placeholder="Telefono" name="a2"
+                            [(ngModel)]="usuarioN.telefono">
+                    </div>
+                    <div class="single-input">
+                        <input class="cr-round--lg" type="password" placeholder="Contraseña"
+                            [(ngModel)]="usuarioN.contrasena" name="a3">
+                    </div>
+                    <div class="single-input">
+                        <input class="cr-round--lg" type="password" placeholder="Confirmar Contraseña" name="a4"
+                            [(ngModel)]="usuarioN.contrasenaConfimarcion">
+                    </div>
+                    <div class="single-input">
+                        <button id="boton-de-accountbox" type="submit"
+                            (click)="registrarCorreo()"><span>Registrase</span></button>
+                    </div>
+                </form>
+            </div>
+            <span class="accountbox-close-button" (click)="verLogin()"><i class="zmdi zmdi-close"></i></span>
+        </div>
+    </div>
+</div>

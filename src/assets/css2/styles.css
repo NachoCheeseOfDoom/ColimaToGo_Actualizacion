@@ -1,0 +1,164 @@
+
+
+.menu #menu-flters {
+  padding: 0;
+  margin: 0 auto 0 auto;
+  list-style: none;
+  text-align: center;
+  border-radius: 50px;
+}
+
+.menu #menu-flters li {
+  
+  cursor: pointer;
+  display: inline-block;
+  padding: 8px 12px 10px 12px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1;
+  color: rgb(82, 80, 80);
+  margin-bottom: 10px;
+  transition: all ease-in-out 0.3s;
+  border-radius: 50px;
+  font-family: "Playfair Display", serif;
+}
+
+.menu #menu-flters li:hover,
+.menu #menu-flters li.filter-active {
+  color: red;
+}
+
+.menu #menu-flters li:last-child {
+  margin-right: 0;
+}
+
+.menu .menu-item {
+  margin-top: 50px;
+}
+
+.menu .menu-img {
+  width: 70px;
+  border-radius: 50%;
+  float: left;
+  border: 2px solid red;
+  
+}
+
+.menu .menu-content {
+  margin-left: 85px;
+  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  
+}
+
+.menu .menu-content::after {
+  
+  content: "......................................................................""....................................................................""....................................................................";
+  position: absolute;
+  left: 20px;
+  right: 0;
+  top: -4px;
+  z-index: 1;
+  color: #bab3a6;
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
+
+.menu .menu-content a {
+  font-size: 20px;
+  padding-right: 10px;
+  position: relative;
+  z-index: 3;
+  font-weight: 700;
+  color: grey;
+  background:white;
+  transition: 0.3s;
+}
+
+.menu .menu-content a:hover {
+  color: red;
+}
+
+.menu .menu-content span {
+  background:white;
+  position: relative;
+  z-index: 3;
+  padding: 0 10px;
+  font-weight: 600;
+  color: red;
+}
+
+.menu .menu-ingredients {
+  margin-left: 85px;
+  font-style: italic;
+  font-size: 14px;
+  font-family: "Poppins", sans-serif;
+  color: rgb(105, 104, 104);
+}
+
+/*--------------------------------------------------------------
+# Book a table button Menu
+--------------------------------------------------------------*/
+.book-a-table-btn {  
+  margin: 10px 0 0 15px;
+  border: 2px solid red;
+  color: red;
+  border-radius: 50px;
+  padding: 8px 25px;
+  text-transform: uppercase;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  transition: 0.3s;
+}
+
+.book-a-table-btn:hover {
+  background: red;
+  color: #fff;
+}
+
+@media (max-width: 992px) {
+  .book-a-table-btn {
+    margin: 10px 15px 0 0;
+  }
+}
+
+@media (max-width: 500px) {
+  .book-a-table-btn {
+    margin-top: 20px;
+    margin: 0 15px 0 0;
+    padding: 8px 20px;
+  }
+}
+
+/*--------------------------------------------------------------
+# Div for menu button
+--------------------------------------------------------------*/
+.menu-Btn{
+  display: block;
+  margin-top: 10px;
+  margin-left: -10px;
+}
+
+/*--------------------------------------------------------------
+# Menu button
+--------------------------------------------------------------*/
+/* .newBtnForMenu{
+  border: red 2px solid;
+  margin-top: 20px;
+  background: rgba(255, 255, 255, 0.3);
+  text-align: center;
+  padding: 6px 20px;
+  color: rgb(113, 113, 113);
+  border-radius: 50px;
+  transition: all ease-in-out 0.3s;
+  font-size: 14px;
+}
+
+.newBtnForMenu:hover{
+  color: var(--color-primary);
+  background: rgba(255, 0, 0, 0.148);
+  color: rgb(54, 54, 54);
+  box-shadow: 2px 4px 5px rgba(206, 18, 18, 0.45);
+} */

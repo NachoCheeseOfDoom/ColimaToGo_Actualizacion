@@ -1,0 +1,110 @@
+<div class="container">
+    <div class="row" *ngIf="datosPedido">
+        <div class="col-md-12 col-sm-12 ol-lg-12">
+
+            <div class="food__bl__list foo" *ngIf="detallesRestaurante">
+                <div class="fd__list__inner">
+                    <div class="fd__list__details">
+                        <h2 class="title__with__icon"><a href="javascrip:void(0)">
+                                {{detallesRestaurante.nombre}}
+                                <small *ngIf="datosPedido.informacion.estado==='Nuevo'" class="text-info"> Recibió tu
+                                    pedido, pero aun no inicia con la preparación</small>
+                                <small *ngIf="datosPedido.informacion.estado==='En Preparacion'" class="text-warning">
+                                    Inicio con la preparación de tu pedido
+                                </small>
+                                <small *ngIf="datosPedido.informacion.estado==='Listo'" class="text-primary">
+                                    Termino de preparar tu pedio, ya puedes pasar por el
+                                </small>
+                                <small *ngIf="datosPedido.informacion.estado==='Enviados'" class="text-primary">
+                                    Envió a tu dirección tu pedido
+                                </small>
+                                <small *ngIf="datosPedido.informacion.estado==='Entregados'" class="text-success">
+                                    Entrego tu pedido
+                                </small>
+                                <small *ngIf="datosPedido.informacion.estado==='Cancelados'" class="text-danger">
+                                    Cancelo tu pedido
+                                </small>
+                            </a>
+                        </h2>
+
+                        <ul class="list__meta d-flex">
+                            <li>#{{datosPedido.informacion.idPedido}}</li>
+                            <li>{{datosPedido.informacion.fecha | date:'medium'}}</li>
+                            <li [style]="'color: '+ datosPedido.informacion.estado">{{datosPedido.informacion.estado}}
+                            </li>
+                            <li>{{datosPedido.informacion.direccion}}</li>
+                        </ul>
+                        <ul class="list__meta d-flex" *ngIf="fechaEntrega">
+                            <li>Tu pedido será entregado aproximadamente: {{fechaEntrega | date:'medium'}}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="table-content table-responsive">
+                <table>
+
+                    <tbody>
+                        <tr *ngFor="let producto of datosPedido.productos">
+                            <td class="product-thumbnail">
+                                <a href="javascrip:void(0)">
+                                    <img [src]="producto.urlImagen" alt="" height="120">
+                                </a>
+                            </td>
+                            <td class="product-name">
+                                <a href="javascrip:void(0)">{{producto.nombre}}</a><br>
+                                <small>{{producto.descripcion}}</small>
+                                <small *ngIf="producto.extras!=''">{{producto.extras}}</small>
+                                <br>
+                                <small *ngIf="producto.notas!=''">{{producto.notas}}</small>
+                            </td>
+                            <td class="product-price"><span class="amount">{{producto.cantidad}}</span></td>
+                            <td class="product-price"><span
+                                    class="amount">{{producto.precio | currency: 'USD' | lowercase }}</span></td>
+
+
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="row">
+               
+                   
+                
+                <div class="col-lg-6 offset-lg-6">
+                    <div class="cartbox__total__area">
+                        <div class="cartbox-total d-flex justify-content-between">
+                            <ul class="cart__total__list">
+                                <li><small>Sub total</small></li>
+                                <li><small> Propina para el personal ({{porcentajePropina}}%)</small></li>
+                                <li>Costo Envío </li>
+                            </ul>
+                            <ul class="cart__total__tk">
+                                <li>{{datosPedido.informacion.costo | currency: 'USD' | lowercase }}</li>
+                                <li>{{calcularPropina | currency: 'USD' | lowercase }}</li>
+                                <li>{{datosPedido.informacion.costoenvio | currency: 'USD' | lowercase }}</li>
+                            </ul>
+                        </div>
+                        <div class="cart__total__amount">
+                            <span>Total</span>
+                            <span>{{gTotal | currency: 'USD' | lowercase }}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 offset-lg-6" *ngIf="datosPago.serializableData!='completed'">
+                    <div class="section__title title__style--2 service__align--center">
+                        {{datosPago.serializableData}}
+                        <h2 class="title__line">Pago Pendiente</h2>
+                        <p style="color: red;">{{datosPago.error_message}} </p>
+                        <div class="list__btn">
+                            <a class="food__btn grey--btn theme--hover" href="javascript:void()"
+                                (click)="cobrarDeNuevo()">Pagar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <br>
+        </div>
+    </div>
+</div>

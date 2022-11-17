@@ -1,0 +1,247 @@
+
+<section class="h-100 gradient-custom-2 pt-4 pb-5">
+  <div  class="container py-1 h-100">
+    <div  class="row d-flex justify-content-center align-items-center h-100">
+      <div  class="col col-lg-9 col-xl-8">
+        <div  class="card">
+          
+<!-- ===================================Perfil=========================================================== -->
+          <div class="rounded-top text-white d-flex flex-row" id="header-cover-contian" >
+            
+            <div class="ms-2 mt-5 d-flex flex-column" id="image-holder">
+                <img id="profile-image" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+                alt="Generic profile image" class="img-fluid img-thumbnail mt-5 mb-2">
+
+                <!-- <img id="profile-image" src="assets/images/icon.png"
+                alt="Generic profile image" class="img-fluid img-thumbnail mt-4 mb-2"> -->
+            </div>
+
+            <div id="area-informacion-del-usuario" class="ms-3">
+                <h2>{{usuario.nombre}}</h2>
+                
+                <!-- <p class="mt-1"><i class="bi bi-geo-alt"></i> {{usuario.direccion}}</p> -->
+                <p class="mt-1"><i class="bi bi-telephone"></i> {{usuario.telefono}}</p>
+                <p class="mt-1"><i class="bi bi-envelope"></i> {{usuario.correo}}</p>
+            </div>
+
+            <div id="food-logo" class="m-2">
+                <img src="assets/images/icon.png"
+                alt="Generic logo image" class="img-fluid img-thumbnail mt-1 mb-2"
+                style="width: 80px;">
+            </div>
+            
+          </div>
+<!-- ============================================================================================== -->
+
+<!-- ======================================Botones del perfil======================================================== -->
+          <div  class="p-4 text-black" style="background-color: #f8f9fa;">
+            <div class="d-flex justify-content-between text-center py-1">
+
+              <button id="botones-generales"  type="button" href="javascript:void()" (click)="editarPErfil=true">
+                Editar Perfil
+              </button>
+              
+              <button id="botones-generales" type="button" (click)="cerrarSesion()">
+                Cerrar Sesión
+              </button>
+
+            </div>
+          </div>
+<!-- ============================================================================================== -->
+
+<!-- =====================================Editar perfil============================================ -->
+          <div id="seccion-editar-perfil" class="blog__comment__form" *ngIf="editarPErfil">
+              <h2 class="blog__title">Editar mi Perfil</h2>
+              <div class="comment__form">
+
+                  <div class="group">
+                      <input name="nombre" type="text" required="required" [(ngModel)]="usuario.nombre"><span class="highlight"></span><span class="bar"></span>
+                      <label><i class="bi bi-person"></i> Nombre</label>
+                  </div>
+
+                  <div class="group">
+                      <input type="tel" name="telefono" [(ngModel)]="usuario.telefono"><span class="highlight"></span><span class="bar"></span>
+                      <label><i class="bi bi-telephone"></i> Teléfono</label>
+                  </div>
+
+                  <div class="group">
+                      <input type="email" name="correo" [(ngModel)]="usuario.correo"><span class="highlight"></span><span class="bar"></span>
+                      <label><i class="bi bi-envelope"></i> Correo</label>
+                  </div>
+
+                  <div class="comment__btn">
+                    <button id="botones-generales" type="button" (click)="actualizarInfo()">
+                    Guardar
+                  </button>
+                  </div>
+                  
+                  
+              </div>
+          </div>
+<!-- ============================================================================================== -->
+
+<!-- =========================== Mis pedidos ======================================================= -->  
+                      <div style="border: solid 1px #222;" class="food__author flex-wrap flex-lg-nowrap flex-md-nowrap">
+                                <h4 class="side__title">Mis pedidos</h4>
+                                
+                                <div class="food__comment" *ngFor="let pedido of listaPedidos">
+                                    <!-- Start Single Comment -->
+                                    <div class="single__comment">
+                                        <h2><i class="fa fa-shopping-cart"></i><a
+                                                [routerLink]="['/perfil', pedido.idPedido]"
+                                                routerLinkActive="router-link-active">
+                                                {{pedido.nombreRestaurante}}
+                                            </a></h2>
+                                        <ul class="comment__meta">
+                                            <li>{{pedido.fecha | date:'medium'}}</li>
+                                            <li>
+                                                <a [routerLink]="['/perfil', pedido.idPedido]">
+                                                    <small *ngIf="pedido.estado=='1'" class="text-info">
+                                                        {{pedido.estadoTXT }} </small>
+                                                    <small *ngIf="pedido.estado=='2'" class="text-warning">
+                                                        {{pedido.estadoTXT }} </small>
+                                                    <small *ngIf="pedido.estado=='3'" class="text-primary">
+                                                        {{pedido.estadoTXT }} </small>
+                                                    <small *ngIf="pedido.estado=='6'" class="text-primary">
+                                                        {{pedido.estadoTXT }} </small>
+                                                    <small *ngIf="pedido.estado=='4'" class="text-success">
+                                                        {{pedido.estadoTXT }} </small>
+                                                    <small *ngIf="pedido.estado=='5'" class="text-danger">
+                                                        {{pedido.estadoTXT }} </small>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a [routerLink]="['/perfil', pedido.idPedido]">
+                                                    {{pedido.costo | currency: 'USD' | lowercase}}</a></li>
+                                            <li> <a [routerLink]="['/perfil', pedido.idPedido]">
+                                                    {{pedido.costoEnveio | currency: 'USD' | lowercase}}</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                    </div>
+<!-- ================================================================================== -->
+
+<!-- ====================================Mi Direccion=========================================================== -->
+        <div class="card-body p-0 text-black">
+            <div class="align-items-center mb-4">
+              <p class="lead fw-normal mb-0"><i class="bi bi-geo-alt"></i> Mi Dirección</p>
+              <p style="border-bottom: 2px solid red; width: fit-content;" class="mt-2">{{usuario.direccion}}</p>
+            </div>
+            <div class="mb-3">
+              <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
+                <agm-marker [latitude]="latitude" [longitude]="longitude" [markerDraggable]="true" (dragEnd)="markerDragEnd($event)"></agm-marker>
+              </agm-map>
+              <div class="ms-2 mt-2">
+                <button id="botones-generales"  type="button" href="javascript:void()" (click)="editarUbicacion=true">
+                    Editar Dirección
+                </button>
+              </div>  
+            </div>
+
+<!-- ================================Editar Direccion================================================ -->
+            <div id="seccion-editar-perfil" class="blog__comment__form" *ngIf="editarUbicacion">
+                        <!-- <div class="container"> -->
+                          <div class="row">
+                            <div class="col-md-4">
+                              <div class="food__category__area mt--60">
+                                <h4 class="side__title">Mis Direcciones</h4>
+                                <ul class="food__category">
+                                  <li *ngFor="let direccion of listaDireccionesUsuario">
+                                    <a href="javascript:void(0)" (click)="verDireccionM(direccion.id)">
+                                      {{direccion.calle}} <span *ngIf="direccion.predeterminada">
+                                        <small style="color: green;">
+                                          Predeterminada
+                                        </small>
+                                        <button class="cartbox__item__remove">
+                                          <i class="fa fa-edit"></i>
+                                        </button></span>
+                                      <span *ngIf="!direccion.predeterminada">
+                                        <small>Hacer predeterminada</small>
+                                        <button class="cartbox__item__remove" (click)="hacerPredeterminada(direccion.id)">
+                                          <i class="fa fa-check"></i>
+                                        </button>
+                                      </span>
+                                    </a>
+                                    <div class="shop__qun">
+                                      <button class="cartbox__item__remove" (click)="eliminarDireccion(direccion.id)">
+                                        <i class="fa fa-trash-o"></i>
+                                      </button>
+                                    </div>
+                                  </li>
+                                </ul>
+                              </div>
+                              <div id="map58"></div>
+                              <!-- <div id="indicators"></div> -->
+                            </div>
+                            <div class="col-md-8">
+
+                  <!-- ! ===============================================Nuevo input agregado=================================== -->
+                              <div class="group">
+                                <input placeholder="" id="ingresar-direccion-input" name="direccion" type="text" required="required" (keydown.enter)="$event.preventDefault()" #search>
+                                <span class="highlight"></span><span class="bar-direccion"></span>
+                                <label id="ingresar-direccion-lable">Ingresa dirección o mueve el marcador</label>
+                              </div>
+                <!-- ! ================================================================================================================= -->
+
+                              <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
+                                <agm-marker [latitude]="latitude" [longitude]="longitude" [markerDraggable]="true"
+                                  (dragEnd)="markerDragEnd($event)"></agm-marker>
+                              </agm-map>
+
+                  <!-- ! ===============================================Nuevos inputs agregados=================================== -->
+                              <div class="row" *ngIf="verDireccion">
+
+                                <div style="margin-top: 40px;" class="group col-md-5 p-2">
+                                  <input id="ingresar-calle-input" name="calle" type="text" required="required" [(ngModel)]="verDireccion.calle">
+                                  <span class="highlight"></span><span class="bar-calle"></span>
+                                  <label class="p-2" id="ingresar-calle-lable">Calle</label>
+                                </div>
+
+                                <div style="margin-top: 40px;" class="group col-md-3 mt--40 p-2">
+                                  <input id="ingresar-colonia-input" name="calle" type="text" required="required" [(ngModel)]="verDireccion.colonia">
+                                  <span class="highlight"></span><span class="bar-colonia"></span>
+                                  <label class="p-2" id="ingresar-colonia-lable">Colonia</label>
+                                </div>
+
+                                <div style="margin-top: 40px;" class="group col-md-3 mt--40 p-2">
+                                  <input id="ingresar-colonia-input" name="calle" type="text" required="required" [(ngModel)]="verDireccion.municipio">
+                                  <span class="highlight"></span><span class="bar-colonia"></span>
+                                  <label class="p-2" id="ingresar-colonia-lable">Municipio</label>
+                                </div>
+
+                              </div>
+                  <!-- ! ================================================================================================== -->
+
+                              <div class="row ">
+                  <!-- ! ===============================================Nuevo input agregado=================================== -->
+                                <div class="group col-lg-8 p-2">
+                                  <input id="ingresar-direccion-input" name="calle" type="text" required="required" [(ngModel)]="verDireccion.referencia">
+                                  <span class="highlight"></span><span class="bar-direccion"></span>
+                                  <label class="p-2" id="ingresar-direccion-lable">Referencia</label>
+                                </div>
+                  <!-- ! ================================================================================================== -->
+
+                                <div class="col-md-5 mt--50 col-lg-4">    
+                                  <div class="comment__btn align-items-end">
+                                    <button id="botones-generales" type="button" href="javascript:void(0)" (click)="guardarDireccion()" (click)="actualizarInfo()"> Guardar </button>
+                                  </div>
+                                </div>
+
+                              </div>
+                            </div>
+              </div>
+                        <!-- </div> -->
+            </div>
+<!-- ================================================================================================= -->
+        </div>
+<!-- ================================================================================================================== -->
+        </div>
+      </div>
+      <!-- <div class="col col-lg-9 col-xl-9">
+        <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
+                <agm-marker [latitude]="latitude" [longitude]="longitude" [markerDraggable]="true" (dragEnd)="markerDragEnd($event)"></agm-marker>
+              </agm-map>
+      </div> -->
+    </div>
+  </div>
+</section>
